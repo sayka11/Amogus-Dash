@@ -41,6 +41,12 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
     }
+IEnumerator RespawnPlayer()
+{
+    yield return new WaitForSeconds(0.1f);
+    rb.velocity = Vector2.zero;  
+    transform.position = Respawn.position;
+}
     private void  OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Spikes")){
