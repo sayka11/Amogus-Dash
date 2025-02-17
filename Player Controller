@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f;
     private Rigidbody2D rb;
     private bool isGrounded;
+    public Transform Respawn;
 
     void Start()
     {
@@ -40,4 +41,13 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
     }
+    private void  OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Spikes")){
+            rb.velocity = Vector2.zero;
+            Debug.Log("Respawn Position: " + Respawn.position);
+            transform.position=Respawn.position;
+        }
+    }
+     
 }
