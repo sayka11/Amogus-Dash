@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class PlayerShooting : MonoBehaviour
+{
+    public GameObject bulletPrefab; // Префаб пули
+    public Transform firePoint; // Точка спавна (Pos2)
+    public float bulletSpeed = 5f; // Скорость пули
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F)) // Проверяем нажатие пробела
+        {
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        if (firePoint != null) // Проверяем, назначена ли точка спавна
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity); // Создаём пулю
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+            {
+                rb.velocity = Vector2.right * bulletSpeed; // Двигаем пулю вправо
+            }
+        }
+    }
+}
